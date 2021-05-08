@@ -6,36 +6,21 @@ Created on Sun Aug 11 00:13:21 2019
 """
 import os
 import fnmatch 
-import numpy as np
-import random
 import cv2 
 from keras.utils.np_utils import to_categorical
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import os 
 from glob import glob
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from skimage.io import imread
-from skimage.transform import rescale, resize, downscale_local_mean
-import sys
-from PIL import Image, ImageEnhance
 from keras.preprocessing.image import Iterator
 from scipy.ndimage import rotate
 from skimage import filters
 from sklearn.metrics import auc
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, roc_auc_score, precision_recall_curve
-from skimage import measure
-import matplotlib.pyplot as plt
-import numpy as np
-import pickle
-import matplotlib
-import random
-from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-
 from keras import backend as K
 from keras import objectives
 from keras.layers import Conv2D,concatenate, Dropout,MaxPooling2D, UpSampling2D, Dense, GlobalAveragePooling2D
@@ -46,35 +31,10 @@ from keras.layers.merge import Concatenate
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
 from keras.optimizers import Adam
-
-import random
-from skimage.io import imread, imshow
-import os
-from PIL import Image
-from keras import backend as K
 from keras.utils.vis_utils import plot_model as plot
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
-import keras
 
-from keras.utils import np_utils
-from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D,Activation
-from keras.layers import Dropout, Flatten, Dense
-from keras.models import Sequential
-from keras.callbacks import ModelCheckpoint
-from scipy.ndimage.interpolation import zoom
-from keras.models import Model
-from keras.metrics import categorical_accuracy
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import label_binarize
-import keras
-from keras.layers import Conv2D, Conv3D, Flatten, Dense, Reshape, BatchNormalization
-from keras.layers import Dropout, Input
-from keras.models import Model
-from keras.optimizers import Adam
-from keras.callbacks import ModelCheckpoint
-from keras.utils import np_utils
 
 
 train_csv = pd.read_csv("G:/blind_detection/train.csv")
@@ -96,12 +56,7 @@ df["id_code"] = df["id_code"].apply(lambda x :os.path.join(train_path,"{}.png".f
 #train_csv["diagnosis"] = train_csv["diagnosis"].astype("str")
 
 
-
 img_height,img_width =128,128
-
-
-
-
 
 def clipped_zoom(img, zoom_factor, **kwargs):
 
@@ -137,7 +92,6 @@ def clipped_zoom(img, zoom_factor, **kwargs):
     else:
         out = img
 
-
 def get_train_image(image,augmentation =False):
 
     train =np.array(image) 
@@ -168,7 +122,6 @@ def get_train_image(image,augmentation =False):
 #            
         return train
 
-
 y=df['diagnosis']
 
 img_list=[]
@@ -186,8 +139,6 @@ for i in range(x):
 
 #    
     img_list.append(img)
-
-
 
 X = get_aug_image(img_list,augmentation =True)
 
